@@ -1,0 +1,11 @@
+type Query {
+  # hello(a: String): Hello
+  directMessage(id: ID): DirectMessage
+  directMessages(page: Int, offset: Int): [DirectMessage]
+  directRoom(id: ID): DirectRoom
+  directRooms(page: Int, offset: Int): [DirectRoom]
+  room(id: ID, name: String): Room
+  rooms(page: Int, offset: Int): [Room]
+  user(id: ID, username: String, email: String): User
+  users(page: Int, offset: Int): [User]
+}

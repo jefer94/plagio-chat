@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  educa-switch-challenge:
+    build: .
+    ports:
+      - 19000:19000
+      - 19006:19006
+    volumes:
+      - ./env.json:/usr/src/env.json
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+      - mongo-config:/data/configdb
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: 
+
+  # mongo:
+  #   image: mongo
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: example
+
+volumes:
+  mongo:
+  mongo-config:

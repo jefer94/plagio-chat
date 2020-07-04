@@ -1,0 +1,6 @@
+type DirectMessage {
+  id: ID
+  text: String
+  directRoom: DirectRoom
+  user: User
+}

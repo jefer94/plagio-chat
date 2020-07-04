@@ -1,0 +1,7 @@
+type Mutation {
+  # hello(a: String): Hello
+  directMessage: DirectMessage
+  directRoom: DirectRoom
+  room: Room
+  user(id: String, username: String, email: String): User
+}

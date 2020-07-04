@@ -1,0 +1,26 @@
+FROM node:14.4.0-alpine3.10
+
+EXPOSE 19000
+EXPOSE 19001
+EXPOSE 19002
+EXPOSE 19003
+EXPOSE 19004
+EXPOSE 19005
+EXPOSE 19006
+EXPOSE 19007
+EXPOSE 19008
+EXPOSE 19009
+
+# ENV PORT 3000
+
+WORKDIR /usr/src
+
+COPY package.json .
+COPY yarn.lock .
+
+RUN yarn global add expo-cli
+RUN yarn
+
+COPY . .
+
+CMD ["yarn", "web"]

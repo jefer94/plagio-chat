@@ -1,0 +1,9 @@
+type User {
+  id: ID
+  username: String
+  email: String
+  # password: String
+  # role: String
+  directRooms: [DirectRoom]
+  rooms: [Room]
+}
