@@ -8,6 +8,10 @@ type Query {
   directRoomIds(ids: [ID]!): [DirectRoom]
   directRoomCount(user: ID): Int
   directRooms(page: Int, offset: Int): [DirectRoom]
+  message: Message
+  messageIds(ids: [ID]!): [Message]
+  messageCount(user: ID): Int
+  messages(page: Int, offset: Int): [Message]
   room(id: ID, name: String): Room
   roomIds(ids: [ID]!): [Room]
   roomCount: Int

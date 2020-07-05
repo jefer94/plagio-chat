@@ -11,6 +11,15 @@ type Mutation {
   updateManyDirectRoom(input: [DirectRoomInput!]!): [DirectRoom]
   removeOneDirectRoom(id: ID!): DirectRoom
   removeManyDirectRoom(ids: [ID!]!): [DirectRoom]
+
+
+  addOneMessage(input: MessageInput!): Message
+  addManyMessage(input: [MessageInput!]!): [Message]
+  updateOneMessage(input: MessageInput!): Message
+  updateManyMessage(input: [MessageInput!]!): [Message]
+  removeOneMessage(id: ID!): Message
+  removeManyMessage(ids: [ID!]!): [Message]
+
   addOneRoom(input: RoomInput!): Room
   addManyRoom(input: [RoomInput!]!): [Room]
   updateOneRoom(input: RoomInput!): Room

@@ -4,3 +4,10 @@ type Message {
   room: Room
   user: User
 }
+
+input MessageInput {
+  id: ID
+  text: String
+  room: ID
+  user: ID
+}
