@@ -29,7 +29,7 @@ export default async function buildSchemas(): Promise<GraphQLSchema> {
     return readFile(fullFile, 'utf8')
   })
   const listOfSchemas = await Promise.all(lll)
-  // console.log('schemas', listOfSchemas.join('\n'))
+  console.log(listOfSchemas.join('\n').split('\n').map((v, k) => `${k + 1}) ${v}`).join('\n'))
   schemas = buildSchema(listOfSchemas.join('\n'))
   return schemas
 }

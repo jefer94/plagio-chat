@@ -1,5 +1,5 @@
 import { Document, Types } from 'mongoose'
-import { MongooseModel, GqlQuery, Ids, GqlDatas } from './types'
+import { MongooseModel, GqlQuery, Ids, GqlDatas, GqlMutationQuery, GqlMutationsQuery } from './types'
 
 type Id = {
   readonly id: string
@@ -17,9 +17,9 @@ type Id = {
  * @param {object} Model - Mongoose model.
  * @returns {AddOne} One result.
  */
-function addOne(Model: MongooseModel): (query: GqlQuery) => Document {
-  return (query: GqlQuery): Document => {
-    const res = new Model(query)
+function addOne(Model: MongooseModel): (query: GqlMutationQuery) => Document {
+  return (query: GqlMutationQuery): Document => {
+    const res = new Model(query.input)
     res.save()
     return res
   }
@@ -37,31 +37,25 @@ function addOne(Model: MongooseModel): (query: GqlQuery) => Document {
  * @param {object} Model - Mongoose model.
  * @returns {AddMany} Many result.
  */
-function addMany(Model: MongooseModel): (query: GqlQuery) => Promise<Document> {
-  return (query: GqlQuery): Promise<Document> => Model.insertMany(query)
+function addMany(Model: MongooseModel): (query: GqlMutationQuery) => Promise<Document> {
+  return (query: GqlMutationQuery): Promise<Document> => Model.insertMany(query.input)
 }
 
-
-
-
-
-
-
 /**
- * @callback AddOne
+ * @callback ModifyOne
  * @param {object} query - GraphQL query.
- * @returns {object} Ids result.
+ * @returns {object} Modify one.
  */
 
 /**
- * Add one.
+ * Modify one.
  *
  * @param {object} Model - Mongoose model.
- * @returns {AddOne} One result.
+ * @returns {ModifyOne} Modify one.
  */
-function addOne(Model: MongooseModel): (query: Ids) => GqlDatas {
-  return (query: GqlQuery): Document => {
-    const res = new Model(query)
+function modifyOne(Model: MongooseModel): (query: GqlMutationQuery) => Document {
+  return (query: GqlMutationQuery): Document => {
+    const res = new Model(query.input)
     res.save()
     return res
   }
@@ -70,7 +64,7 @@ function addOne(Model: MongooseModel): (query: Ids) => GqlDatas {
 /**
  * @callback ModifyMany
  * @param {object} query - GraphQL query.
- * @returns {object} One result.
+ * @returns {object} Modify many.
  */
 
 /**
@@ -79,21 +73,14 @@ function addOne(Model: MongooseModel): (query: Ids) => GqlDatas {
  * @param {object} Model - Mongoose model.
  * @returns {ModifyMany} Modify many.
  */
-function modifyMany(Model: MongooseModel): (query: Ids) => GqlDatas {
-  return (query: Ids): GqlDatas => {
-    const { ids } = { ids: [], ...query }
-    const findMany = ids.map((v) => Types.ObjectId(v))
-    return Model.find({
+function modifyMany(Model: MongooseModel): (query: GqlMutationsQuery) => GqlDatas {
+  return (query: GqlMutationsQuery): GqlDatas => {
+    const findMany = query.input.map((v) => Types.ObjectId(v.id))
+    return Model.update({
       id: { $in: findMany }
-    })
+    }, query.input)
   }
-  // return (query: GqlQuery): Promise<Document> => Model.updateMany(query)
 }
-
-
-
-
-
 
 /**
  * @callback RemoveOne
@@ -163,12 +150,15 @@ export function resolveMutations(model: MongooseModel, key: string, plural?: str
   const pluralCapitalize = capitalize(plural || `${key}s`)
   const one = `addOne${keyCapitalize}`
   const many = `addMany${pluralCapitalize}`
+  const uOne = `updateOne${keyCapitalize}`
+  const uMany = `updateMany${pluralCapitalize}`
   const dOne = `removeOne${keyCapitalize}`
   const dMany = `removeMany${pluralCapitalize}`
-  const all = plural || `${key}s`
   return {
     [one]: addOne(model),
     [many]: addMany(model),
+    [uOne]: modifyOne(model),
+    [uMany]: modifyMany(model),
     [dOne]: removeOne(model),
     [dMany]: removeMany(model)
   }
