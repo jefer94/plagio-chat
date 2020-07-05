@@ -4,3 +4,10 @@ type DirectMessage {
   directRoom: DirectRoom
   user: User
 }
+
+input DirectMessageInput {
+  id: ID
+  text: String!
+  directRoom: ID
+  user: ID
+}

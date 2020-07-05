@@ -3,3 +3,8 @@ type Room {
   name: String
   users: [User]
 }
+
+input RoomInput {
+  id: ID
+  name: String
+}

@@ -1,7 +1,26 @@
 type Mutation {
-  # hello(a: String): Hello
-  directMessage: DirectMessage
-  directRoom: DirectRoom
-  room: Room
-  user(id: String, username: String, email: String): User
+  addOneDirectMessage(input: DirectMessageInput!): DirectMessage
+  addManyDirectMessage(input: [DirectMessageInput!]!): [DirectMessage]
+  updateOneDirectMessage(input: DirectMessageInput!): DirectMessage
+  updateManyDirectMessage(input: [DirectMessageInput!]!): [DirectMessage]
+  removeOneDirectMessage(id: ID!): DirectMessage
+  removeManyDirectMessage(ids: [ID!]!): [DirectMessage]
+  addOneDirectRoom(input: DirectRoomInput!): DirectRoom
+  addManyDirectRoom(input: [DirectRoomInput!]!): [DirectRoom]
+  updateOneDirectRoom(input: DirectRoomInput!): DirectRoom
+  updateManyDirectRoom(input: [DirectRoomInput!]!): [DirectRoom]
+  removeOneDirectRoom(id: ID!): DirectRoom
+  removeManyDirectRoom(ids: [ID!]!): [DirectRoom]
+  addOneRoom(input: RoomInput!): Room
+  addManyRoom(input: [RoomInput!]!): [Room]
+  updateOneRoom(input: RoomInput!): Room
+  updateManyRoom(input: [RoomInput!]!): [Room]
+  removeOneRoom(id: ID!): Room
+  removeManyRoom(ids: [ID!]!): [Room]
+  addOneUser(input: UserInput!): User
+  addManyUser(input: [UserInput!]!): [User]
+  updateOneUser(input: UserInput!): User
+  updateManyUser(input: [UserInput!]!): [User]
+  removeOneUser(id: ID!): User
+  removeManyUser(ids: [ID!]!): [User]
 }

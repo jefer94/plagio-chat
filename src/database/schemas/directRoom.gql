@@ -2,3 +2,8 @@ type DirectRoom {
   id: ID
   users: [User]
 }
+
+input DirectRoomInput {
+  id: ID
+  users: [ID]
+}

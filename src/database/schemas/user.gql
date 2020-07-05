@@ -7,3 +7,9 @@ type User {
   directRooms: [DirectRoom]
   rooms: [Room]
 }
+
+input UserInput {
+  id: ID
+  username: String
+  email: String
+}

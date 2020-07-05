@@ -1,11 +1,19 @@
 type Query {
   # hello(a: String): Hello
   directMessage(id: ID): DirectMessage
+  directMessageIds(ids: [ID]!): [DirectMessage]
+  directMessageCount(user: ID): Int
   directMessages(page: Int, offset: Int): [DirectMessage]
-  directRoom(id: ID): DirectRoom
+  directRoom(): DirectRoom
+  directRoomIds(ids: [ID]!): [DirectRoom]
+  directRoomCount(user: ID): Int
   directRooms(page: Int, offset: Int): [DirectRoom]
   room(id: ID, name: String): Room
+  roomIds(ids: [ID]!): [Room]
+  roomCount(): Int
   rooms(page: Int, offset: Int): [Room]
   user(id: ID, username: String, email: String): User
+  userIds(ids: [ID]!): [User]
+  userCount(): Int
   users(page: Int, offset: Int): [User]
 }
