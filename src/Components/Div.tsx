@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { color, space, layout, shadow } from 'styled-system'
+import { color, space, shadow, layout, typography } from 'styled-system'
 
 export default styled.div`
+  ${typography}
   ${layout}
+  ${shadow}
   ${color}
   ${space}
-  ${shadow}
-  display: inline-flex;
 `

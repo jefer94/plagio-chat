@@ -1,9 +1,14 @@
 /* eslint-disable functional/no-class */
 import Document, { Main, NextScript } from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 import Head from 'next/head'
 import theme from '../theme'
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: red;
+  }
+`
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     // Step 1: Create an instance of ServerStyleSheet
@@ -22,9 +27,28 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html lang="en">
-        <body style={{ margin: 0, padding: 0, color: theme.dark, backgroundColor: theme.light }}>
+        <body style={{
+          margin: 0,
+          padding: 0,
+          color: theme.dark,
+          // fontSize: 30,
+          backgroundColor: theme.white,
+          fontFamily: "'Comfortaa', cursive"
+          // fontFamily: "'Poiret One', cursive"
+        }}
+        >
+          {/* <link
+            // rel="preload"
+            href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+            // as="font"
+            rel="stylesheet"
+          /> */}
+          {/* <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet" /> */}
+          <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
           <Main />
           <NextScript />
+          <GlobalStyle />
         </body>
       </html>
     )

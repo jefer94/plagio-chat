@@ -1,13 +1,14 @@
 import styled from 'styled-components'
-import { color, space, border } from 'styled-system'
+import { color, space, border, layout } from 'styled-system'
 
 export default styled.div`
-  width: ${({ w }) => w || 'inherit'};
-  height: ${({ h }) => h || '30px'};
-  padding: 10px;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  margin-top: -1px;
+  padding: 6px 12px;
+  display: table;
+  border-radius: 20px;
+  margin: 2px 10px;
+  line-height: 20px;
+  font-size: 15px;
+  ${layout}
   ${border}
   ${color}
   ${space}
