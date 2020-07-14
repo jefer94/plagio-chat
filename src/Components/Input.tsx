@@ -18,6 +18,10 @@ export default styled.input`
   margin: 0;
   padding: 0;
   border: 0;
+  width: calc(100vw - 72px);
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
   ${layout}
   ${color}
   ${space}

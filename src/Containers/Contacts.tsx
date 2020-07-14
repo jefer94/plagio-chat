@@ -12,14 +12,14 @@ type Contact = {
 
 export default function Contacts(): ReactElement {
   const contacts: readonly Contact[] = [{
-    username: 'a1'
+    username: 'Paula'
   }, {
-    username: 'a2'
+    username: 'Andreina'
   }]
   return (
-    <Panel h="calc(100vh - 100px)" w="100px">
-      {contacts.map(({ username }) => (
-        <ContactItem>
+    <Panel h="calc(100vh - 100px)" w="250px">
+      {contacts.map(({ username }, key) => (
+        <ContactItem key={key}>
           <Icon bg={theme.light} color={theme.dark}>{username.match(/^[a-z]/i)[0].toUpperCase()}</Icon>
           <span>{username}</span>
         </ContactItem>

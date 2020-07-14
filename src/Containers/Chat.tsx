@@ -44,12 +44,13 @@ export default function Peoples(): ReactElement {
   return (
     <Panel h="calc(100vh - 100px)">
       <HorizontalFlex>
-        <Panel h="calc(100vh - 100px)" w="calc(100vh - 100px)" boxShadow={theme.lightShadow({ y: '-2px' })}>
+        <Panel h="calc(100vh - 100px)" w="calc(100vw - 250px)" boxShadow={theme.lightShadow({ y: '-2px' })}>
           {messages.map(({ username, message }, key) => (
             <Div
-              w="calc(100vh - 100px)"
+              w="calc(100vw - 250px)"
               display="block"
               textAlign={isMe(username) ? 'right' : 'left'}
+              key={key}
             >
               {!isMe(username) && (key === 0 || username !== messages[key - 1].username) ?
                 <Title mx={22} my={2} fontSize={12}>{username}</Title> :
